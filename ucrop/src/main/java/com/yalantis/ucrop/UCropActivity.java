@@ -3,6 +3,7 @@ package com.yalantis.ucrop;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
@@ -111,6 +112,9 @@ public class UCropActivity extends AppCompatActivity {
     private View mBlockingView;
 
     private Transition mControlsTransition;
+
+    private TextView tvCancel,tvConfirm;
+    private ImageView ivReset,ivRotate;
 
     private Bitmap.CompressFormat mCompressFormat = DEFAULT_COMPRESS_FORMAT;
     private int mCompressQuality = DEFAULT_COMPRESS_QUALITY;
@@ -301,6 +305,7 @@ public class UCropActivity extends AppCompatActivity {
 
         setupAppBar();
         initiateRootViews();
+        initiateCustomizeViews();
 
         if (mShowBottomControls) {
 
@@ -356,6 +361,10 @@ public class UCropActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
         }
+        /**
+         * 待添加控制
+         */
+        toolbar.setVisibility(View.GONE);
     }
 
     private void initiateRootViews() {
@@ -373,6 +382,17 @@ public class UCropActivity extends AppCompatActivity {
             params.bottomMargin = 0;
             findViewById(R.id.ucrop_frame).requestLayout();
         }
+    }
+
+    private void initiateCustomizeViews() {
+        tvCancel = findViewById(R.id.tvCancel);
+        tvConfirm = findViewById(R.id.tvConfirm);
+        ivReset = findViewById(R.id.ivReset);
+        ivRotate = findViewById(R.id.ivRotate);
+        tvCancel.setOnClickListener(v -> onBackPressed());
+        tvConfirm.setOnClickListener(v -> cropAndSaveImage());
+        ivRotate.setOnClickListener(v -> rotateByAngle(-90));
+        ivReset.setOnClickListener(v -> resetRotation());
     }
 
     private TransformImageView.TransformImageListener mImageListener = new TransformImageView.TransformImageListener() {

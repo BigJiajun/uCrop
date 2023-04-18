@@ -1,9 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ucrop_photobox"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/ucrop_photobox"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -43,7 +51,7 @@
         <com.yalantis.ucrop.view.UCropView
             android:id="@+id/ucrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:alpha="0" />
 
     </FrameLayout>
@@ -55,4 +63,69 @@
         android:layout_alignParentBottom="true"
         android:visibility="gone" />
 
-</RelativeLayout>
+    </RelativeLayout>
+<!--    自定义view布局-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:background="#CC353C49"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvCancel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:paddingTop="7.5dp"
+            android:paddingBottom="7.5dp"
+            android:textColor="@color/ucrop_color_white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="Cancel"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivReset"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/tvCancel"
+            app:layout_constraintRight_toLeftOf="@+id/ivRotate"
+            android:src="@drawable/ucrop_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivRotate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/ivReset"
+            app:layout_constraintRight_toLeftOf="@+id/tvConfirm"
+            android:src="@drawable/ucrop_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:background="@drawable/ucrop_customize_shape"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBaseline_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:paddingTop="7.5dp"
+            android:paddingBottom="7.5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/ucrop_color_white"
+            android:layout_marginRight="20dp"
+            android:text="Confirm"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
