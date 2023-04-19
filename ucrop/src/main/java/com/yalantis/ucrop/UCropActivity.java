@@ -84,7 +84,7 @@ public class UCropActivity extends AppCompatActivity {
     private static final int SCALE_WIDGET_SENSITIVITY_COEFFICIENT = 15000;
     private static final int ROTATE_WIDGET_SENSITIVITY_COEFFICIENT = 42;
 
-    private String mToolbarTitle;
+    private String mToolbarTitle,mCancelText,mConfirmText;
 
     // Enables dynamic coloring
     private int mToolbarColor;
@@ -298,6 +298,8 @@ public class UCropActivity extends AppCompatActivity {
         mToolbarCancelDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE, R.drawable.ucrop_ic_cross);
         mToolbarCropDrawable = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_WIDGET_CROP_DRAWABLE, R.drawable.ucrop_ic_done);
         mToolbarTitle = intent.getStringExtra(UCrop.Options.EXTRA_UCROP_TITLE_TEXT_TOOLBAR);
+        mCancelText = intent.getStringExtra(UCrop.Options.EXTRA_UCROP_CANCEL_TEXT);
+        mConfirmText = intent.getStringExtra(UCrop.Options.EXTRA_UCROP_CONFIRM_TEXT);
         mToolbarTitle = mToolbarTitle != null ? mToolbarTitle : getResources().getString(R.string.ucrop_label_edit_photo);
         mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
@@ -389,6 +391,8 @@ public class UCropActivity extends AppCompatActivity {
         tvConfirm = findViewById(R.id.tvConfirm);
         ivReset = findViewById(R.id.ivReset);
         ivRotate = findViewById(R.id.ivRotate);
+        tvCancel.setText(mCancelText);
+        tvConfirm.setText(mConfirmText);
         tvCancel.setOnClickListener(v -> onBackPressed());
         tvConfirm.setOnClickListener(v -> cropAndSaveImage());
         ivRotate.setOnClickListener(v -> rotateByAngle(-90));
