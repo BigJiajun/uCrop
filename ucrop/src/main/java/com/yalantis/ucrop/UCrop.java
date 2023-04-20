@@ -298,6 +298,8 @@ public class UCrop {
         public static final String EXTRA_UCROP_LOGO_COLOR = EXTRA_PREFIX + ".UcropLogoColor";
 
         public static final String EXTRA_HIDE_BOTTOM_CONTROLS = EXTRA_PREFIX + ".HideBottomControls";
+
+        public static final String EXTRA_SHOW_CUSTOMIZE_VIEW = EXTRA_PREFIX + ".showCustomizeView";
         public static final String EXTRA_FREE_STYLE_CROP = EXTRA_PREFIX + ".FreeStyleCrop";
 
         public static final String EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT = EXTRA_PREFIX + ".AspectRatioSelectedByDefault";
@@ -483,7 +485,7 @@ public class UCrop {
          * @param text - desired text for cancel Text
          */
         public void setCancelText(@Nullable String text) {
-            mOptionBundle.putString(EXTRA_UCROP_TITLE_TEXT_TOOLBAR, text);
+            mOptionBundle.putString(EXTRA_UCROP_CANCEL_TEXT, text);
         }
 
         /**
@@ -520,6 +522,13 @@ public class UCrop {
          */
         public void setHideBottomControls(boolean hide) {
             mOptionBundle.putBoolean(EXTRA_HIDE_BOTTOM_CONTROLS, hide);
+        }
+
+        /**
+         * @param show - show Customize View (hide by default)
+         */
+        public void showCustomizeView(boolean show) {
+            mOptionBundle.putBoolean(EXTRA_SHOW_CUSTOMIZE_VIEW, show);
         }
 
         /**

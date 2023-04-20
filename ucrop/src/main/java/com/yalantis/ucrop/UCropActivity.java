@@ -52,6 +52,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.transition.AutoTransition;
 import androidx.transition.Transition;
@@ -99,7 +100,7 @@ public class UCropActivity extends AppCompatActivity {
     private int mToolbarCropDrawable;
     private int mLogoColor;
 
-    private boolean mShowBottomControls;
+    private boolean mShowBottomControls,mShowCustomizeView;
     private boolean mShowLoader = true;
 
     private UCropView mUCropView;
@@ -115,6 +116,8 @@ public class UCropActivity extends AppCompatActivity {
 
     private TextView tvCancel,tvConfirm;
     private ImageView ivReset,ivRotate;
+
+    private ConstraintLayout mCustomizeView;
 
     private Bitmap.CompressFormat mCompressFormat = DEFAULT_COMPRESS_FORMAT;
     private int mCompressQuality = DEFAULT_COMPRESS_QUALITY;
@@ -303,6 +306,7 @@ public class UCropActivity extends AppCompatActivity {
         mToolbarTitle = mToolbarTitle != null ? mToolbarTitle : getResources().getString(R.string.ucrop_label_edit_photo);
         mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
+        mShowCustomizeView = !intent.getBooleanExtra(UCrop.Options.EXTRA_SHOW_CUSTOMIZE_VIEW, false);
         mRootViewBackgroundColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_crop_background));
 
         setupAppBar();
@@ -387,6 +391,12 @@ public class UCropActivity extends AppCompatActivity {
     }
 
     private void initiateCustomizeViews() {
+        mCustomizeView = findViewById(R.id.customizeView);
+        if(mShowCustomizeView){
+            mCustomizeView.setVisibility(View.VISIBLE);
+        }else {
+            mCustomizeView.setVisibility(View.GONE);
+        }
         tvCancel = findViewById(R.id.tvCancel);
         tvConfirm = findViewById(R.id.tvConfirm);
         ivReset = findViewById(R.id.ivReset);

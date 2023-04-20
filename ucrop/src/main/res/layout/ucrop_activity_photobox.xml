@@ -66,6 +66,7 @@
     </RelativeLayout>
 <!--    自定义view布局-->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/customizeView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="vertical"
